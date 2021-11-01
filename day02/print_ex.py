@@ -17,4 +17,5 @@ gim = '김밥'
 dan = '단무지'
 bob = '볶음밥'
 
-print(gim, dan, bob, sep='!!', end='==>맛있다')
+print(gim, dan, bob, sep='!!', end='==>맛있다\n') #\n을 붙어주지않으면 칸바꿈을 하지 않는다.
+print(gim, dan, bob, sep = '!!',end = '=>맛있다')

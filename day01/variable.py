@@ -23,16 +23,19 @@ print('=============================')
 # 7number = 700
 number7 = 700
 num7ber = 777
+
 # 2. 공백을 포함할 수 없다.
 # user birth day = 19921205
 userbirthday = 19921205
 user_birth_day = 19921205 # snake case (파이썬 선호)
 UserBirthDay  = 19921205  # camel case (자바, 자바스크립트 선호)
+
 # 3. 대/소문자를 구분한다.
 banana = '바나나'
 BANANA = '뻐네이너'
 
 print(BANANA)
+
 # 4. if , while과 같은 이미 기능이 포함된 단어는 변수이름 사용할 수 없다.
 # if = 123
 # for = '메롱'
