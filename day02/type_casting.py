@@ -1,5 +1,5 @@
 
-name = "홍길동" 
+name = '홍길동' 
 score = 78 
 
 print(name + "님의 점수는 " + str(score) + "입니다.") 
