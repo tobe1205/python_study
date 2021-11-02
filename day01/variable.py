@@ -20,15 +20,15 @@ print('=============================')
 
 # 변수 이름 규칙
 # 1. 숫자로 시작하면 안된다. (모든 프로그래밍 공통)
-# 7number = 700
-number7 = 700
+# 7number = 700  - 에러
+number7 = 700 # 처음만 아니면 어느곳에 숫자가 위치해도 상관없다.
 num7ber = 777
 
 # 2. 공백을 포함할 수 없다.
 # user birth day = 19921205
 userbirthday = 19921205
-user_birth_day = 19921205 # snake case (파이썬 선호)
-UserBirthDay  = 19921205  # camel case (자바, 자바스크립트 선호)
+user_birth_day = 19921205 # snake case 띄어쓰기마다 "_" 이용(파이썬 선호)
+UserBirthDay  = 19921205  # camel case 앞글자마다 대문자 입력(자바, 자바스크립트 선호)
 
 # 3. 대/소문자를 구분한다.
 banana = '바나나'
@@ -53,4 +53,3 @@ print(야옹이)
 a, b = 10, 20; # 파이썬만 이 방법으로 가능
 print(a + b) 
 
-print('Hello World')

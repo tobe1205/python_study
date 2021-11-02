@@ -48,7 +48,7 @@ anni = '크리스마스'
 print('%d월 %d일은 %s입니다.' %(month, day, anni))
 print('{}월 {}일은 {}입니다.'.format(month,day,anni))
 print(str(month) + '월 ' + str(day) + '일은 ' + anni + '입니다.')
-
+print(f"{month}월 {day}일은 {anni}입니다.")
 print('=' * 30)
 
 #f 는 자동으로 6자리까지 제한
