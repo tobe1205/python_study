@@ -17,6 +17,6 @@ money = int(input('얼마 있습니까? '))
 
 if money >= 20000:
     print('치킨 시켜먹자!!')
-    print('신나는 치킨파티~~야호!')
+    print('신나는 치킨파티~야호!')
 else:
     print('치킨은 무슨..라면이나 먹자..')
