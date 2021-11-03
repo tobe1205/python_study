@@ -2,11 +2,11 @@
 # 반복문, 탈출문 while문
 
 # 회원 번호
-# user_num = 1 # 제어변수(begin) 반복문의 시작값
+user_num = 1 # 제어변수(begin) 반복문의 시작값
 
-# while user_num <= 10: # 조건식(end): 반복문의 끝값
-#     print(f'{user_num}번 회원님 안녕하세요!')
-#     user_num += 2 # 증감식(step): 종료시점을 결정
+while user_num <= 10: # 조건식(end): 반복문의 끝값
+    print(f'{user_num}번 회원님 안녕하세요!')
+    user_num += 2 # 증감식(step): 종료시점을 결정
 # 조건문을 잘못 만들게 되면 무한 루프가 되니 조심해야한다. 
 # 무한루프 탈출 단축키 ctrl+C
 
@@ -25,6 +25,7 @@ print('=' * 40)
 print(f'총합: {total}')
 
 print('='*40)
+
 # 7~100까지의 정수 중 7의 배수들만 가로로 출력하기
 
 num = 7 
