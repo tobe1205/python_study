@@ -14,3 +14,4 @@ num2 = 0
 while num2 <= 100:
     print(num2, end= ' ')
     num2 +=2
+
