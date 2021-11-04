@@ -8,12 +8,13 @@ ex( range(begin, end, step))
  - begin은 포함, end는 미포함 (이상 미만 개념)
 """
 
+
 list1 =[1,2,3,4,5,6,7,8,9,10]
  
 print(list1)
 
 list2 = list(range(1,11,1))
-
+ 
 print(list2)
 
 # 마지막 값 생략시 자동으로 1로 처리
