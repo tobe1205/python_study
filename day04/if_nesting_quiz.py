@@ -20,4 +20,5 @@ elif point >= 60:
 else:
     print('당신의 학점은 F입니다.')
     
+    
 
