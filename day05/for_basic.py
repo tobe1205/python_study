@@ -30,7 +30,7 @@ for num in range(0,101,4):
 
 print()
 # 1~100까지의 정수 중 6의 배수이면서 12의 배수가 아닌 수를 가로로 출력
-num = 1
+
 
 for num in range(1,101):
     if (num % 6 == 0) and (num % 12 != 0):

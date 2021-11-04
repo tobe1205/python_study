@@ -2,7 +2,7 @@
 
 import random
 number = random.randint(1,999) 
-# print(number)
+print(number)
 
 while True :
     guess = int(input('숫자를 입력하세요: '))
