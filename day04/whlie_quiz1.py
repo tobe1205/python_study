@@ -12,4 +12,3 @@ while sum <= num2:
 
 print(f"{num}~{num2}까지의 총합: {total}")
 
-
