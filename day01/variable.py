@@ -34,6 +34,7 @@ UserBirthDay  = 19921205  # camel case 앞글자마다 대문자 입력(자바, 
 banana = '바나나'
 BANANA = '뻐네이너'
 
+
 print(BANANA)
 
 # 4. if , while과 같은 이미 기능이 포함된 단어는 변수이름 사용할 수 없다.
