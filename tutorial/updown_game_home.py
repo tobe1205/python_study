@@ -49,7 +49,7 @@ while True:
             print(f'정답 기회 {count}번 남음~~')
             print('-' * 40)
         elif count < 0:
-            print(f'정답 기회 {count}번 초과~~')
+            print(f'정답 기회 {-count}번 초과~~')
             print('-' * 40)
         max = guess
     elif guess < rn :
@@ -58,7 +58,7 @@ while True:
             print(f'정답 기회 {count}번 남음~~')
             print('-' * 40)
         elif count < 0 :
-            print(f'정답 기회 {count}번 초과~~')
+            print(f'정답 기회 {-count}번 초과~~')
             print('-' * 40)
         min = guess
         
