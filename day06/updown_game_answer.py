@@ -74,6 +74,7 @@ while True:
         else:
             print('YOU LOSE!!')
         break
+    
     elif secret > answer:
         print('UP!!!')
         min = answer
