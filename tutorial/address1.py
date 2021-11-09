@@ -21,13 +21,19 @@ while True:
         namelist.append(name)
         phonelist.append(phone)
         print('{}님 연락처 저장 완료!'.format(name))
+        print(phonelist)
+        print(namelist)
 
     elif menu == 2:
+        
         name = input('찾을 이름을 입력하세요: ')
 
         if name in namelist:
             idx = namelist.index(name)
             print(f'{namelist[idx]}님의 전화번호는 {phonelist[idx]}입니다.')
+            print(phonelist)
+            print(namelist)
+            
         else:
             print(f'{name}님은 연락처 목록에 없습니다.')
     
@@ -36,9 +42,14 @@ while True:
         name = input('삭제할 이름을 입력하세요: ')
 
         if name in namelist:
-            namelist.remove(name)
-            phonelist.remove(phone)
+            idx = namelist.index(name)
+            namelist.remove(namelist[idx])
+            phonelist.remove(phonelist[idx])
+                        
+            
             print(f'{name}님의 정보가 정상적으로 삭제되었습니다.')
+            print(phonelist)
+            print(namelist)
         else:
             print(f'{name}님은 연락처 목록에 없습니다.')
     
