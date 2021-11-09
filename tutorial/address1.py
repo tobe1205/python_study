@@ -43,7 +43,9 @@ while True:
 
         if name in namelist:
             idx = namelist.index(name)
-            namelist.remove(namelist[idx])
+            # namelist.remove(namelist[idx])
+            # phonelist.remove(phonelist[idx])
+            namelist.remove(name)
             phonelist.remove(phonelist[idx])
                         
             
