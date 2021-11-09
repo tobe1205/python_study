@@ -15,7 +15,7 @@ foods = ['김밥', '단무지','닭강정', '라면']
 
 print('단무지' in foods)
 print('짜장면' in foods)
-print('김밥 ' not in foods)
+print('김밥' not in foods)
 
 f = input('음식명: ')
 

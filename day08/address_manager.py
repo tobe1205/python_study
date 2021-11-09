@@ -49,7 +49,6 @@ while True:
         for name in namelist:
             idx = namelist.index(name)    
             print(f'{namelist[idx]} : {phonelist[idx]}')
-       
 
     elif menu == 5:
         print("프로그램을 종료합니다.")
