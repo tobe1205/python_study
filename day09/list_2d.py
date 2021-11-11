@@ -107,7 +107,7 @@ list_3d = [
 ]
 
 
-
 print(list_3d[2][0][1] + list_3d[1][1][1])
 print(list_3d[0][1] * list_3d[1][0][0])
+
 
