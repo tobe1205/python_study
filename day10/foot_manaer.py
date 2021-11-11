@@ -49,7 +49,7 @@ while True:
     elif select == '3':
         print('# 프로그램을 종료하시겠습니까? [Y/N]')
         choice = input('=> ')
-        if choice == 'y':
+        if choice == 'y' or 'ㅛ' or 'Y':
             print('프로그램을 종료합니다.')
             sys.exit()
     else: 
