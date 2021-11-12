@@ -15,17 +15,20 @@ while True:
     select = (input('# 메뉴 입력: '))
 
     if select == '1':
-        menu = input('메뉴명: ')
+        while True:
+            menu = input('메뉴명: ')
 
-        if menu not in menulist:
-            price = (input('가격: '))
-            menulist[menu] = price
-            print(f'신규 메뉴 {menu}(이)가 등록되었습니다.')
-            print(menulist)
-        else: 
-            print(f'{menu}(은)는 이미 등록된 메뉴입니다.')
+            if menu not in menulist:
+                price = (input('가격: '))
+                menulist[menu] = price
+                print(f'신규 메뉴 {menu}(이)가 등록되었습니다.')
+                print(menulist)
+                break
+            else: 
+                print(f'{menu}(은)는 이미 등록된 메뉴입니다.')
 
     elif select == '2':
+
         print('=======메뉴판=======')
         for food in menulist:
             print(f'{food} : {menulist[food]}원')
@@ -48,9 +51,10 @@ while True:
             if menu in menulist:
                 del(menulist[menu])
                 print(f'{menu}이(가) 삭제되었습니다.')
-
             else:
                 print(f'{menu}(은)는 등록된 메뉴가 아닙니다.')
+        else:
+            continue        
 
     elif select == '3':
         print('# 프로그램을 종료하시겠습니까 [Y/N]')
@@ -68,4 +72,3 @@ while True:
     input('\n메뉴를 보시려면 Enter를 입력하세요..')
 
 
-# print("*** {:<8s}: {:3d}개".format("코카콜라", C_cnt))
