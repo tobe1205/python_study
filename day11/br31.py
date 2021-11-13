@@ -1,6 +1,8 @@
 # 플레이어의 이름을 저장할 리스트
 player_list = []
-number_list = ['0']
+number_list = []
+
+
 print('### 베스킨라빈스~~~ㅆㅓ리 원~!')
 print('- 참여인원을 입력(최소2 최대 4)')
 
@@ -11,9 +13,7 @@ while True:
     if player_num < 2 or player_num > 4:
         print('# 인원 범위가 알맞지 않음(2 ~ 4 입력)')
         continue
-    elif player_num
-
-    # 인원은 제대로 적음
+   
     print(f'\n{player_num}명의 플레이어가 참여했습니다!')
     print('## 플레이어의 닉네임을 등록합니다.')
     
@@ -35,12 +35,34 @@ while True:
                 player_list.append(player_name)
                 print(player_list)
                 break
+    while True:
+
+        for player in player_list:
+            idx = player_list.index(player)
+            print(f'\n{player_list[idx]}의 턴!!')
+            print('[ 숫자를 입력하세요(최소 1개, 최대 3개) | 예시 : 23 24 25 ]')
+            print('# 마지막에 31을 입력하는 플레이어가 패배합니다.')
+          
+            print(f'\n 현재 --부터 입력하시면 됩니다!!') # 리스트의 마지막 인덱스를 가지고온다. number_list[-1] + 1
             
-    # print(f'\n{player_list[0+1]}의 턴!!')
-    # print('[ 숫자를 입력하세요(최소 1개, 최대 3개) | 예시 : 23 24 25 ]')
-    # print('# 마지막에 31을 입력하는 플레이어가 패배합니다.')
-    # print(f'\n 현재 1부터 입력하시면 됩니다!!')
-    # print(number_list)
-    # number = list(map(int, input('>>> ').split()))
-    # number.append(number_list)
-    # print(number_list)
+            print(number_list)
+            
+            number = list(map(int, input('>>> ').split()))  
+
+            number_list.append(number)
+            idx += 1
+             
+            # if : # 1. 전 사람이 마지막으로 입력한 번호에 다음번호부터 입력하지 않으면 '~부터 제대로 입력하세요' 문구 출력
+
+            # elif : # 2. 순차적으로 입력하지 않으면 '순차적으로 입력하세요' 문구출력
+            
+            # elif : 3. 31을 말하면 패배
+            # else:
+            #     # 3. 정상적으로 입력했다면                  
+            
+            
+                
+
+            
+
+
