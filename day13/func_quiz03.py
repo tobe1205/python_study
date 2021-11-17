@@ -35,9 +35,12 @@ def get_max(numberlist):
             max_v = numberlist[i]
     return max_v
 
-        
+
+
+
 print("-" * 40)
 
 data_list = list(map(int, input("정수: ").split(" ")))
 
 print("최대값: {}".format(get_max(data_list)))
+
