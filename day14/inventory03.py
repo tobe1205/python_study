@@ -63,6 +63,8 @@ def arrange_product():
             print('=' * 50)
             print(f"{i['제품번호']}           {i['제품명']}         {i['수량']}개      {i['가격']}원     {i['총액']}원")
             print('=' * 50)
+        
+            # print('[{}] 제품코드에 해당하는 제품 정보가 등록되지 않았습니다.'.format(code))    
     print('\n# 메뉴화면으로 돌아가시려면 Enter를 누르세요.')
     input()    
 
@@ -72,12 +74,32 @@ def modify_product():
     code = input('-제품번호: ')
     for x in inventory:
         if code == x['제품번호']:
-            print('# [{}] {} 제품의 정보를 수정합니다.'.format(x['제품번호'], x['제품명']))
+            print('# [{}] {} 제품의 정보를 수정합니다.'.format(code, x['제품명']))
             print('[ 1. 수량 변경 | 2. 단가 변경 | 3. 일괄 변경 | 4. 취소 ]')
+            choice = int(input('=>'))
+            if choice == 1:
+                new_amount = int(input('수정할 수량: '))
+                x['수량'] = new_amount
+            elif choice == 2:
+                new_price = int(input('수정할 가격: '))
+                x['가격'] = new_price
+            elif choice == 3:
+                new_amount = int(input('수정할 수량: '))
+                x['수량'] = new_amount
+                new_price = int(input('수정할 가격: '))
+                x['가격'] = new_price
+            x['총액'] = x['수량'] * x['가격']
+            print(' {}의 정보수정이 정상 처리되었습니다.'.format(code))
+            
+            if choice == 4:
+                print('#변경을 취소합니다.')
+                print('[{}] 제품코드에 해당하는 제품 정보가 등록되지 않았습니다.'.format(code))
+                print('\n# 메뉴화면으로 돌아가시려면 Enter를 누르세요.')
+                input()  
             
 
+    
 # 5. 입력된 제품 정보 삭제하는 함수 -에러...
-
 def delete_product():
     print('삭제하실 제품의 번호를 입력하세요.')
     code = input('-제품번호: ')
