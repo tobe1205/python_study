@@ -68,7 +68,7 @@ while True:
     elif select == "3":
         print("# 프로그램을 종료하시겠습니까?[Y/N]")
         choice = input("=> ")
-        if choice.lower()[0] == "y":
+        if choice.lower() == "y":
             print("프로그램을 종료합니다.")
             sys.exit()
         else:
