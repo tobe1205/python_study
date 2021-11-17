@@ -1,5 +1,6 @@
 # 전역변수 정의부
 inventory = []
+
 # 함수 정의부
 
 
@@ -18,6 +19,9 @@ def check_duplicate_code():
         if flag == False:
             return code
 
+#제품코드 여부
+
+
 # 제품등록을 수행하는 함수
 def insert_product():
     product = {}
@@ -30,15 +34,42 @@ def insert_product():
     product['총액'] = product['가격'] * product['수량']
 
     inventory.append(product)
-    print('\n# 제품 등록이 정상 처리되었습니다.!')
+    print('\n# 제품 등록이 정상 처리되었습니다.')
     print('\n# 메뉴화면으로 돌아가시려면 Enter를 누르세요.')
     input()
+    
+# 개별 제품정보 조회하는 함수
+def arrange_product():
+    print('# 조회하실 제품의 번호를 입력하세요.')
+    code = input('-제품번호: ')
+    for i in inventory:
+        if code == i['제품번호']:
+            print('\n            *** [{}] {} 재고 정보 ***'.format(code, i['제품명']))
+            print('=' * 50)
+            print('제품번호     제품명      수량        단가        총액')
+            print('=' * 50)
+            print(f"{i['제품번호']}           {i['제품명']}       {i['수량']}개      {i['가격']}원       {i['총액']}원")
+            print('=' * 50)
+            print('\n# 메뉴화면으로 돌아가시려면 Enter를 누르세요.')
+            input()
+    
+# 입력된 제품 정보 삭제하는 함수
 
-# 제품의 번호 유무 확인하는 함수
+def delete_product():
+    print('삭제하실 제품의 번호를 입력하세요.')
+    code = input('-제품번호: ')
+    for n in inventory:
+        if code == n['제품번호']:
+            print('[{}] {} 제품의 정보를 삭제합니다.'.format(code, n['제품명']))
+            print('\n{}의 정보삭제가 정상 처리되었습니다.'.format(n['제품명']))
+            del(inventory)
+
 
 if __name__ == '__main__':
     
     while True:
+        print(inventory)
+
         print('*** 재고 관리 프로그램***')
         print('# 1. 제품 정보 등록하기')
         print('# 2. 모든 제품정보 조회')
@@ -53,7 +84,24 @@ if __name__ == '__main__':
         elif menu == 2:
             print(inventory)
         elif menu == 3:
-            print('# 조회하실 제품의 번호를 입력하세요.')
+            arrange_product()
+        elif menu == 4:
+            pass
+
+        elif menu == 5:
+            delete_product()
+        elif menu == 6:
+            print('#프로그램을 종료합니다. [Y/N]')
+            choice = input('=>')
+            if choice.lower() == "y":
+                print("프로그램을 종료합니다.")
+                break
+        else:
+            print("종료를 취소합니다.")
+            continue
+ 
+                
+
             
             
             
