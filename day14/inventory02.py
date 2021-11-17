@@ -31,6 +31,7 @@ def insert_product():
     inventory.append(product)
     print('# 제품 등록 완료!')
     
+    
 
 
 # 메인 실행부

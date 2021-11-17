@@ -33,3 +33,4 @@ discount()
 
 print(f'전역변수 money: {money}')
 print(f' 전역변수 money의 메모리주소값: {hex(id(money))}')
+
