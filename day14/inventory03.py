@@ -3,8 +3,7 @@ inventory = []
 
 # 함수 정의부
 
-
-# 제품번호의 중복을 확인하는 함수
+# 1 제품번호의 중복을 확인하는 함수
 def check_duplicate_code():
     while True:
         code = input('- 제품 번호: ')
@@ -19,10 +18,8 @@ def check_duplicate_code():
         if flag == False:
             return code
 
-#제품코드 여부
 
-
-# 제품등록을 수행하는 함수
+# 1-1 제품등록을 수행하는 함수
 def insert_product():
     product = {}
     print('\n# 제품 정보 등록을 시작합니다.')
@@ -37,8 +34,24 @@ def insert_product():
     print('\n# 제품 등록이 정상 처리되었습니다.')
     print('\n# 메뉴화면으로 돌아가시려면 Enter를 누르세요.')
     input()
+
+# 2. 모든 제품정보 조회하는 함수
+def all_arrange_product():
+    total = 0
+    print('\n            *** 창고 재고 정보 ***')
+    print('=' * 50)  
+    print('제품번호     제품명      수량        단가        총액')
+    print('=' * 50)  
+    for p in inventory:
+        total += p['총액']
+        print(f"{p['제품번호']}           {p['제품명']}         {p['수량']}개      {p['가격']}원     {p['총액']}원")  
+    print('=' * 50)
+    print(f'                         창고 전체 제품 총액: {total}원')
+    print('\n# 메뉴화면으로 돌아가시려면 Enter를 누르세요.')
+    input()
     
-# 개별 제품정보 조회하는 함수
+    
+# 3. 개별 제품정보 조회하는 함수
 def arrange_product():
     print('# 조회하실 제품의 번호를 입력하세요.')
     code = input('-제품번호: ')
@@ -48,12 +61,22 @@ def arrange_product():
             print('=' * 50)
             print('제품번호     제품명      수량        단가        총액')
             print('=' * 50)
-            print(f"{i['제품번호']}           {i['제품명']}       {i['수량']}개      {i['가격']}원       {i['총액']}원")
+            print(f"{i['제품번호']}           {i['제품명']}         {i['수량']}개      {i['가격']}원     {i['총액']}원")
             print('=' * 50)
-            print('\n# 메뉴화면으로 돌아가시려면 Enter를 누르세요.')
-            input()
-    
-# 입력된 제품 정보 삭제하는 함수
+    print('\n# 메뉴화면으로 돌아가시려면 Enter를 누르세요.')
+    input()    
+
+# 4. 제품정보 수정하는 함수 
+def modify_product():
+    print('# 수정하실 제품의 번호를 입력하세요')
+    code = input('-제품번호: ')
+    for x in inventory:
+        if code == x['제품번호']:
+            print('# [{}] {} 제품의 정보를 수정합니다.'.format(x['제품번호'], x['제품명']))
+            print('[ 1. 수량 변경 | 2. 단가 변경 | 3. 일괄 변경 | 4. 취소 ]')
+            
+
+# 5. 입력된 제품 정보 삭제하는 함수 -에러...
 
 def delete_product():
     print('삭제하실 제품의 번호를 입력하세요.')
@@ -62,7 +85,7 @@ def delete_product():
         if code == n['제품번호']:
             print('[{}] {} 제품의 정보를 삭제합니다.'.format(code, n['제품명']))
             print('\n{}의 정보삭제가 정상 처리되었습니다.'.format(n['제품명']))
-            del(inventory)
+            del(n)
 
 
 if __name__ == '__main__':
@@ -70,7 +93,7 @@ if __name__ == '__main__':
     while True:
         print(inventory)
 
-        print('*** 재고 관리 프로그램***')
+        print('*** 재고 관리 프로그램 ***')
         print('# 1. 제품 정보 등록하기')
         print('# 2. 모든 제품정보 조회')
         print('# 3. 개별 제품정보 조회')
@@ -78,16 +101,25 @@ if __name__ == '__main__':
         print('# 5. 제품정보 삭제하기')
         print('# 6. 프로그램 종료하기')
 
-        menu = int(input('# 메뉴 입력: '))
+        menu = input('# 메뉴 입력: ')
+        
+        if not menu.isdecimal():
+            print('숫자를 입력하세요.')
+            continue
+        else:
+            menu = int(menu)
+
+        if menu < 1 or menu > 6:
+            print('입력 범위가 알맞지 않습니다.(1 ~ 6)입력')
+
         if menu == 1:
             insert_product()
         elif menu == 2:
-            print(inventory)
+            all_arrange_product()
         elif menu == 3:
             arrange_product()
         elif menu == 4:
-            pass
-
+            modify_product()
         elif menu == 5:
             delete_product()
         elif menu == 6:
@@ -96,9 +128,12 @@ if __name__ == '__main__':
             if choice.lower() == "y":
                 print("프로그램을 종료합니다.")
                 break
-        else:
-            print("종료를 취소합니다.")
-            continue
+            else:
+                continue
+        
+
+
+        
  
                 
 
