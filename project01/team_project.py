@@ -66,7 +66,7 @@ def input_code(msg):
 def get_product(name):
     for menu in cafelist:
         if name == menu['제품명']:
-            return name
+            return menu
     return {} # 못 찾을 경우 상징적으로 빈 딕셔너리 리턴
 
 # 3. 개별 메뉴 조회 처리 함수
@@ -75,7 +75,7 @@ def search_product():
     menu = get_product(name)
 
     if len(menu) > 0:
-        print('{}{}원'.format(menu['제품명'], menu['가격']))
+        print('{}\t\t{}원'.format(menu['제품명'], menu['가격']))
     else:
         print('# 존재하지 않는 제품입니다.')
 
@@ -85,14 +85,14 @@ def modify_product():
     menu = get_product(name)
 
     if len(menu) > 0:
-        print('\n#{}의 정보를 수정합니다.'.format(menu['제품명']))
+        print('\n# {}의 정보를 수정합니다.'.format(menu['제품명']))
 
         print('[ 1. 이름 변경 | 2. 단가 변경 | 3. 일괄 변경 | 4. 취소 ]')
         select = int(input('>> '))
 
         if select == 1:
             # 딕셔너리 수정: 딕셔너리변수[key] = new_value
-            menu['제품명'] = (input('- 수정할 이름({}): '.format(menu['제품명'])))
+            menu['제품명'] = input('- 수정할 이름({}): '.format(menu['제품명']))
         elif select == 2:
             menu['가격'] = int(input('- 수정할 가격({}): '.format(menu['가격'])))
         elif select == 3:
