@@ -78,6 +78,7 @@ def get_product(name):
 
 # 3. 장바구니 보기 함수
 def basket_look():
+
     print('\n   ***** 나의 장바구니 리스트 *****')
     print('=' * 50)
     print('{:^8s}{:^8s}{:^8s}{:^8s}{:^8s}'.format('제품명', '온도', '사이즈', '토핑','가격'))
@@ -88,7 +89,7 @@ def basket_look():
 
 
 
-100
+
 # 4. 메뉴 수정 처리 함수       
 def modify_product():
     name = input_code('수정')
