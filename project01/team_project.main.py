@@ -8,7 +8,6 @@ cafelist = [
     }
 ]
 
-choice_list = []
 
 # 함수 정의부
 
@@ -43,12 +42,11 @@ def make_menu():
 def show_menu():
     print('\n*** 안녕하세요! 카페입니다!! ***')
     print('# 1. 메뉴 등록하기')
-    print('# 2. 모든 메뉴 조회')
-    print('# 3. 장바구니')
-    print('# 4. 메뉴 수정하기')
-    print('# 5. 메뉴 삭제하기')
-    print('# 6. 구매하기')
-    print('# 7. 프로그램 종료하기')
+    print('# 2. 모든 메뉴 보기')
+    print('# 3. 메뉴 수정하기')
+    print('# 4. 메뉴 삭제하기')
+    print('# 5. 구매하기')
+    print('# 6. 프로그램 종료하기')
 
 # 2. 모든 메뉴 출력 함수
 def all_menu():
@@ -75,21 +73,10 @@ def get_product(name):
             return menu
     return {} # 못 찾을 경우 상징적으로 빈 딕셔너리 리턴
 
-# 3. 장바구니 보기 함수
-def basket_look():
 
-    print('\n   ***** 나의 장바구니 리스트 *****')
-    print('=' * 50)
-    print('{:^8s}{:^8s}{:^8s}{:^8s}'.format('제품명', '온도', '사이즈', '토핑'))
-    print('=' * 50)
-    for choice in choice_list:
-        print('{:^8s}{:^8s}{:^8s}{:^8s}'.format(choice['제품명'], choice['온도'], choice['사이즈'],choice['토핑']))
-    print('=' * 50)
+#메뉴 구매 하기 함수
 
-
-
-
-# 4. 메뉴 수정 처리 함수       
+#  메뉴 수정 처리 함수       
 def modify_product():
     name = input_code('수정')
     menu = get_product(name)
@@ -115,10 +102,9 @@ def modify_product():
         input()
     else:
         print('# 존재하지 않는 제품입니다.')
-        input()
  
 
-# 5. 메뉴 삭제
+# 4. 메뉴 삭제
 def delete_product():
     code = input_code('삭제')
     menu = get_product(code)
@@ -130,35 +116,7 @@ def delete_product():
         print('# 존재하지 않는 제품입니다.')
     input()
 
-# 6. 구매하기
-def choice_menu():
-    choice = {}
-
-    print('\n메뉴 선택을 시작합니다!')
-
-    choice['제품명'] = input('[제품명] => ')
-    x = input('[ 1. 아이스 | 2. 핫 ] => ')
-    if x == '1':
-        choice['온도'] = '아이스'
-    elif x == '2':
-        choice['온도'] = '핫'
-    choice['사이즈'] = input('[ 1. 스몰 | 2. 라지(+500) ] => ')
-    if x == '1':
-        choice['사이즈'] = '스몰'
-    elif x == '2':
-        choice['사이즈'] = '라지'
-    choice['토핑'] = input('[ 1. 생크림(+500) | 2. 샷추가(+600) | 3. 없음 ] => ')
-    if x == '1':
-        choice['토핑'] = '생크림'
-    elif x == '2':
-        choice['토핑'] = '샷추가'
-    elif x == '3':
-        choice['토핑'] = '없음'
-
-    choice_list.append(choice)
-    print('[장바구니 저장완료!!')
-
-# 7. 프로그램 종료 함수
+# 6. 프로그램 종료 함수
 def exit_program():
     import sys
     print('\n# 프로그램을 종료합니다. [Y/N]')
@@ -172,7 +130,6 @@ if __name__ == '__main__':
     
     while True:
         print(cafelist)
-        print(choice_list)
 
         show_menu()
         select = (input('=> '))
@@ -183,14 +140,12 @@ if __name__ == '__main__':
         elif select == '2':
             all_menu()
         elif select == '3':
-            basket_look()
-        elif select == '4':
             modify_product()
-        elif select == '5':
+        elif select == '4':
             delete_product()
+        elif select == '5':
+            pass
         elif select == '6':
-            choice_menu()
-        elif select == '7':
             exit_program()
         else:
             print('# 메뉴를 잘못 입력했습니다.')
