@@ -21,27 +21,27 @@ def login_menu():
     print('#2 . 로그인 ')
     
 # 회원가입
-def sign_up():
+def user_info():
     info = {}
     print('\n ☆ 회원 가입을 시작합니다. ☆')      
     info['이름'] = input('- 이름: ')
     info['아이디'] = check_duplicate_code2()
-    if info['아이디'] not in user:
+    if info['아이디']  not in user:
         print(' 사용가능 아이디 입니다')
     else:
         print('이미 등록된 아이디 입니다.')
-    while True:    
-        info['비밀번호'] = input('- 비밀번호: ')
-        if info['비밀번호'] == input('- 비밀번호확인: '):
-            print('비밀번호가 일치합니다')
-            user.append(info)
-            print('회원가입 되셨습니다!')
-            print('메뉴화면으로 돌아가시려면 Enter를 누르세요')
-            return
+    info['비밀번호'] = input('- 비밀번호: ')
+    if info['비밀번호'] == input('- 비밀번호확인: '):
+        print('비밀번호가 일치합니다')
+    else:
+        return
+        print('비밀번호가 일치하지 않습니다.')
+    user.append(info)
+    print('회원가입 되셨습니다!')
+    print('메뉴화면으로 돌아가시려면 Enter를 누르세요')
+    input()
 
-        else:
-            print('비밀번호가 일치하지 않습니다.')
-            continue        
+
 # 로그인
 def login():
     print('----------로그인----------')
@@ -57,7 +57,8 @@ def login():
             print('아이디가 틀렸습니다.')
         elif (info['아이디'] == id) and (info['비밀번호'] != pw):
             print('비밀번호가 틀렸습니다.')
-
+        
+        input()
         
 # 중복
 def check_duplicate_code2():    
@@ -224,19 +225,25 @@ def exit_program():
 
 
 
-login_all()
+
 
 
 if __name__ == '__main__':
     
     while True:
         print(cafelist)
-        
+
         show_menu()
         select = int(input('=> '))
 
         if select == 1:
-            pass
+            login_menu()
+            menu = int(input('>> '))
+            print(user)
+            if menu == 1:
+                user_info()
+            elif menu == 2:
+                login()
         elif select == 2:
             all_menu()
         elif select == 3:
@@ -247,4 +254,3 @@ if __name__ == '__main__':
             print('# 메뉴를 잘못 입력했습니다.')
 
         input()
-
