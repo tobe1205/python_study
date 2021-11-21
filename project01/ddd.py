@@ -1,8 +1,7 @@
 import sys
 # 회원가입 리스트 타입
-user = [{'이름': '김건우', '별명': '대븜', '아이디': 'a1234', '비밀번호': '1234'}]
+user = []
 
-print(user)
 # 함수 정의부
 # 메뉴를 출력하는 함수
 def show_menu():
@@ -87,21 +86,28 @@ def check_duplicate_code3():
             return info
 
 def header_print1():
-    print('\n\t\t *** 회원 아이디 조회 *** ')
-    print('=' * 30)
-    print('{:^10s}{:^10s}{:^10s}'.format('이름','별명','아이디'))
-    print('=' * 30)
+    print('\n\t\t*** 회원 아이디 조회 *** ')
+    print('=' * 60)
 
 def header_print2():
-    print('\n\t\t *** 회원 비밀번호 조회 *** ')
-    print('=' * 30)
-    print('{:^10s}{:^10s}{:^10s}'.format('이름','별명','비밀번호'))
-    print('=' * 30)
+    print('\n\t\t\t*** 회원 비밀번호 조회 *** ')
+    print('=' * 80)
+
 
 # 별명를 입력받아 ~~~하는 함수
 def input_code(msg):
     print(f'# {msg}하실 별명을 입력하세요.')
-    code = input('>> ')
+    code = input('별명: ')
+    return code
+
+def input_code2(msg):
+    print(f'# {msg}하실 이름과 아이디를 입력하세요.')
+    code = input('이름: ')
+    return code
+
+def input_code3(msg):
+    print(f'# {msg}하실 아이디를 입력하세요.')
+    code = input('아이디: ')
     return code
 
 # 별명으로 해당 아이디을 찾아오는 함수
@@ -111,6 +117,22 @@ def get_info(code):
             return info
     return {} # 못 찾을 경우 상징적으로 빈 딕셔너리 리턴
 
+# 이름 + 별명으로 비밀번호 찾아오는 함수
+def get_info2(code):
+    for info in user:
+        if code == info['이름']:
+            x = input('아이디: ')
+            if info['아이디'] == x : 
+                return info
+    return {} # 못 찾을 경우 상징적으로 빈 딕셔너리 리턴
+
+
+def get_info3(code):
+    for info in user:
+        if code == info['아이디']:
+            return info
+    return {} # 못 찾을 경우 상징적으로 빈 딕셔너리 리턴    
+
 # 아이디 조회 처리 함수
 def search_id():
     code = input_code('조회')
@@ -118,39 +140,39 @@ def search_id():
 
     if len(info) > 0:
         header_print1()
-        print('{:^10s}{:^10s}{:^10s}'.format(info['이름'], info['별명'], info['아이디']))
+        print('[{:^7s}]님의 별명[{:^7s}], 아이디는 [{:^7s}]입니다.'.format(info['이름'], info['별명'], info['아이디']))
+        print('=' * 60)
     else:
         print('# 존재하지 않는 아이디입니다.')
 
 # 비밀번호 찾기 처리 함수    
 def search_pw():
-    code = input_code('조회')
-    info = get_info(code)
+    code = input_code2('조회')
+    info = get_info2(code)
 
     if len(info) > 0:
         header_print2()
-        print('{:^10s}{:^10s}{:^10s}'.format(info['이름'], info['별명'], info['비밀번호']))
+        print('[{:^7s}]님의 별명[{:^7s}],아이디는 [{:^7s}], 비밀번호는 [{:^7s}] 입니다.'.format(info['이름'], info['별명'], info['아이디'], info['비밀번호']))
+        print('=' * 80)
     else:
         print('# 존재하지 않는 비밀번호입니다.')
 
 
 # 비밀번호 수정    
-def id_newpw():
-    code = input_code('수정')
-    info = get_info(code)
+def modify_privercy():
+    code = input_code3('수정')
+    info = get_info3(code)
 
     if len(info) > 0:
-        print('\n# [{}] {}를 정보를 수정합니다.'.format(info['별명'], info['이름'] ))
+        print('\n# [{}] {}님의 정보를 수정합니다.'.format(info['별명'], info['이름'] ))
         info['아이디']
-        print('[ 1. 이름 변경 | 2. 별명 변경 | 3. 비밀번호 변경 | 4. 취소 ]')
+        print('[ 1. 별명 변경 | 2. 비밀번호 변경 | 3. 취소 ]')
         select = int(input('>> '))
         
-        if select ==1:
-            info['이름'] = input('-수정할 이름({}): '.format(info['이름']))
-            # 딕셔너리 수정: 딕셔너리변수 [key] = new_value
-        elif select ==2:
+        
+        if select == 1:
             info['별명'] = input('-수정할 별명({}): '.format(info['별명']))     
-        elif select ==3:
+        elif select == 2:
             info['비밀번호'] = input('-수정할 비밀번호({}): '.format(info['비밀번호']))
         else:
             print('# 변경을 취소합니다.')
@@ -159,13 +181,17 @@ def id_newpw():
 
 # 제품 정보 삭제 처리 함수
 def delete_user():
-    code = input_code('삭제')
-    info = get_info(code)
-
+    code = input_code3('삭제')
+    info = get_info3(code)
     if len(info) > 0:
-        user.remove(info)
-        print('\n# 아이디가 정상 삭제 되었습니다.')
-        print(user)
+        print('정말로 삭제하시겠습니까? [Y/N]')
+        answer = input('>> ')
+        if answer.lower() == 'y':
+                user.remove(info)
+                print('\n# 아이디가 정상 삭제 되었습니다.')
+                print(user)
+        else:
+            print('삭제가 취소되었습니다.')     
     else:
         print('# 존재하지 않는 아이디입니다.')  
 
@@ -198,7 +224,7 @@ if __name__ == '__main__':
         elif menu == 4:
             search_pw()
         elif menu == 5:
-            id_newpw()
+            modify_privercy()
         elif menu == 6:
             delete_user()
         elif menu == 7:
