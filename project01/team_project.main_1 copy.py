@@ -1,4 +1,6 @@
 import sys
+login_status = False
+
 
 cafelist = [
     {'제품명' : '아메리카노',
@@ -11,38 +13,49 @@ cafelist = [
 
 user = []
 
-print(user)
+
 # 함수 정의부
 
-# 메뉴를 출력하는 함수
-def login_menu():
+# 0 [회원가입] 함수_별명중복 
+def check_duplicate_nickname():    
+    while True:       
+        info = input('- 별명: ')    
+        flag = False  # 중복 플래그          
+        # 중복 검증
+        for p in user:
+            if info == p['별명']:
+                # 중복됨 
+                print('중복되었습니다 다시 입력하세요')
+                flag = True             
+                break
+        if flag == False:
+            return info
 
-    print('#1 . 회원가입 ')
-    print('#2 . 로그인 ')
-    
-# 회원가입
-def sign_up():
+# 0. [회원가입]
+def user_info():
     info = {}
     print('\n ☆ 회원 가입을 시작합니다. ☆')      
     info['이름'] = input('- 이름: ')
-    info['아이디'] = check_duplicate_code2()
+    info['별명'] = check_duplicate_nickname()
+    info['아이디'] = check_duplicate_id()
     if info['아이디'] not in user:
         print(' 사용가능 아이디 입니다')
     else:
         print('이미 등록된 아이디 입니다.')
-    while True:    
+    while True:     
         info['비밀번호'] = input('- 비밀번호: ')
         if info['비밀번호'] == input('- 비밀번호확인: '):
             print('비밀번호가 일치합니다')
             user.append(info)
             print('회원가입 되셨습니다!')
             print('메뉴화면으로 돌아가시려면 Enter를 누르세요')
+            input()
             return
-
         else:
             print('비밀번호가 일치하지 않습니다.')
-            continue        
-# 로그인
+            continue   
+        
+# 0.[로그인] 
 def login():
     print('----------로그인----------')
     print(user)
@@ -52,15 +65,18 @@ def login():
         if (info['아이디'] == id) and (info['비밀번호'] == pw):
             print('☆ 로그인 되셨습니다 ☆')
             print('{}님 환영합니다.'.format(info['이름']))
-            return
+            return True
         elif (info['아이디'] != id) and (info['비밀번호'] == pw):
             print('아이디가 틀렸습니다.')
+            return False
         elif (info['아이디'] == id) and (info['비밀번호'] != pw):
             print('비밀번호가 틀렸습니다.')
+            return False
+            
+        input()
 
-        
-# 중복
-def check_duplicate_code2():    
+# 0. 아이디 중복
+def check_duplicate_id():    
     while True:       
         info = input('- 아이디: ')    
         flag = False  # 중복 플래그          
@@ -73,19 +89,7 @@ def check_duplicate_code2():
                 break
         if flag == False:
             return info
-
-# 1. [로그인] 전체 메뉴         
-def login_all():            
-    while True: 
-        login_menu()
-        print(user)
-        menu = int(input('메뉴 입력 = > '))
-        if menu == 1:
-            sign_up()
-        if menu == 2:
-            login()
                  
-# 함수 정의부
 # [관리자전용] head 함수
 def show_manager():
     print('== 관리자 전용 ==')
@@ -95,7 +99,7 @@ def show_manager():
     print('# 4. 취소')
     
 # [관리자전용] 제품명 중복 확인 함수
-def check_duplicate_code():    
+def check_duplicate_manager():    
     while True:       
         name = input('- 제품명: ')    
         flag = False  # 중복 플래그          
@@ -114,7 +118,7 @@ def make_menu():
     menu = {}
     print('\n메뉴 등록을 시작합니다!')
 
-    menu['제품명'] = check_duplicate_code()
+    menu['제품명'] = check_duplicate_manager()
     menu['가격'] = int(input('- 가격: '))
 
     cafelist.append(menu)
@@ -158,7 +162,7 @@ def delete_product():
     else:
         print('# 존재하지 않는 제품입니다.')
 
-# 3 .[매니저전용] 전체 함수
+# 2 .[매니저전용] 전체 함수
 def manager_page():
     show_manager()
     select = int(input('=> '))
@@ -171,17 +175,17 @@ def manager_page():
         delete_product()
     elif select == 4:
         print('취소합니다.')
-
+    else:
+        print('제대로 입력해주세요.')
 
 # head 출력 함수
 def show_menu():
     print('\n*** 안녕하세요! 카페입니다!! ***')
-    print('# 1. 회원가입 | 로그인')
-    print('# 2. 모든 메뉴보기')
-    print('# 3. 관리자 전용')
-    print('# 4. 프로그램 종료하기')
+    print('# 1. 모든 메뉴보기')
+    print('# 2. 관리자 전용')
+    print('# 3. 프로그램 종료하기')
 
-# 2. 모든 메뉴 출력 함수
+# 1. 모든 메뉴 출력 함수
 def all_menu():
     print('\n***** 카페 전체 메뉴 *****')
     print('=' * 30)
@@ -205,8 +209,7 @@ def get_product(name):
             return menu
     return {} # 못 찾을 경우 상징적으로 빈 딕셔너리 리턴
 
-
-# 5. 프로그램 종료 함수
+# 3. 프로그램 종료 함수
 def exit_program():
     import sys
     print('\n# 프로그램을 종료합니다. [Y/N]')
@@ -214,37 +217,37 @@ def exit_program():
     if answer.lower() == 'y':
         sys.exit()
     else:
+        print('종료를 취소합니다.')
         return
 
-
-
-
-
-
-
-
-
-login_all()
 
 
 if __name__ == '__main__':
     
     while True:
-        print(cafelist)
-        
-        show_menu()
-        select = int(input('=> '))
-
-        if select == 1:
-            pass
-        elif select == 2:
-            all_menu()
-        elif select == 3:
-            manager_page()         
-        elif select == 4:
-            exit_program()
+        if login_status == False:
+            print(user)
+            print('로그인이 필요한 서비스입니다.')
+            print('[ 1. 회원가입 || 2. 로그인 ]')
+            select = int(input('=> '))
+            if select == 1:
+                user_info()
+            elif select == 2:
+                login_status = login()
         else:
-            print('# 메뉴를 잘못 입력했습니다.')
+            while True:
+                print(cafelist)
+                show_menu()
+                select = int(input('=> '))
+                if select == 1:
+                    all_menu()
+                elif select == 2:
+                    manager_page()         
+                elif select == 3:
+                    exit_program()
+                else:
+                    print('# 메뉴를 잘못 입력했습니다.')
 
-        input()
+                input()
+            
 
