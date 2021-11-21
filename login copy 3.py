@@ -6,7 +6,7 @@ print(user)
 # 함수 정의부
 # 메뉴를 출력하는 함수
 def show_menu():
-    print('\n 안녕하세요 ')
+
     print('#1 . 회원가입 ')
     print('#2 . 로그인 ')
     print('#3 . ID 찾기 ')
@@ -36,7 +36,7 @@ def user_info():
     print('메뉴화면으로 돌아가시려면 Enter를 누르세요')
     input()
 
-# 로그인 함수
+
 def login():
     print('----------로그인----------')
     print(user)

@@ -5,7 +5,7 @@ user = []
 print(user)
 # 함수 정의부
 # 메뉴를 출력하는 함수
-def show_menu():
+def login_menu():
     print('\n 안녕하세요 ')
     print('#1 . 회원가입 ')
     print('#2 . 로그인 ')
@@ -21,7 +21,7 @@ def user_info():
         info = {}
         print('\n ☆ 회원 가입을 시작합니다. ☆')      
         info['이름'] = input('- 이름: ')
-        info['아이디'] = check_duplicate_code()
+        info['아이디'] = check_duplicate_code2()
         if info['아이디'] not in user:
             print(' 사용가능 아이디 입니다')
         else:
@@ -33,7 +33,6 @@ def user_info():
                 user.append(info)
                 print('회원가입 되셨습니다!')
                 print('메뉴화면으로 돌아가시려면 Enter를 누르세요')
-                input()
                 return
 
             else:
@@ -59,8 +58,9 @@ def login():
             print('비밀번호가 틀렸습니다.')
         
         input()
+        
 # 중복
-def check_duplicate_code():    
+def check_duplicate_code2():    
     while True:       
         info = input('- 아이디: ')    
         flag = False  # 중복 플래그          
@@ -81,7 +81,7 @@ def check_duplicate_code():
 # 실행부
 if __name__ == '__main__':
     while True:
-        show_menu()
+        login_menu()
         print(user)
         menu = int(input('메뉴 입력 = > '))
         if menu == 1:

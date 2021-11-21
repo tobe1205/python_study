@@ -42,7 +42,7 @@ def make_menu():
 def show_menu():
     print('\n*** 안녕하세요! 카페입니다!! ***')
     print('# 1. 메뉴 등록하기')
-    print('# 2. 모든 메뉴 보기')
+    print('# 2. 모든 메뉴보기')
     print('# 3. 메뉴 수정하기')
     print('# 4. 메뉴 삭제하기')
     print('# 5. 구매하기')
@@ -58,7 +58,6 @@ def all_menu():
     for menu in cafelist: 
         print('{}    {:>8d}원'.format(menu['제품명'], menu['가격']))
     print('=' * 30)
-    input()
     
 # 제품코드를 입력받는 함수
 def input_code(msg):
@@ -99,7 +98,7 @@ def modify_product():
             print('# 변경을 취소합니다.')
             input()
         print('수정이 완료되었습니다.')
-        input()
+
     else:
         print('# 존재하지 않는 제품입니다.')
  
@@ -114,7 +113,6 @@ def delete_product():
         print('\n# 제품이 정상 삭제되었습니다.')
     else:
         print('# 존재하지 않는 제품입니다.')
-    input()
 
 # 6. 프로그램 종료 함수
 def exit_program():
