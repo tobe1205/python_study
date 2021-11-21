@@ -87,8 +87,8 @@ def login():
         elif (info['아이디'] == id) and (info['비밀번호'] != pw):
             print('비밀번호가 틀렸습니다.')
             input()
-            return False      
-
+            return False    
+ 
 # 0 - 3_1 [id 찾기] - id 조회 헤드 함수
 def header_id():
     print('\n\t\t*** 회원 아이디 조회 *** ')
@@ -150,7 +150,7 @@ def search_pw():
         print('[{:^7s}]님의 별명[{:^7s}],아이디는 [{:^7s}], 비밀번호는 [{:^7s}] 입니다.'.format(info['이름'], info['별명'], info['아이디'], info['비밀번호']))
         print('=' * 80)
     else:
-        print('# 존재하지 않는 비밀번호입니다.')
+        print('# 존재하지 않는 정보입니다..')
     input()
 
 # head 출력 함수
@@ -319,6 +319,7 @@ if __name__ == '__main__':
         if login_status == False:
             print('로그인이 필요한 서비스입니다.')
             print('[ 1. 회원가입 || 2. 로그인 || 3. id 찾기 || 4. pw 찾기 ]')
+            print(user)
             select = int(input('=> '))
             if select == 1:
                 user_info()
