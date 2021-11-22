@@ -71,23 +71,20 @@ def user_info():
 # 0 - 2 [로그인] 함수 
 def login():
     print('----------로그인----------')
-    print(user)
+    # print(user)
+    id = input('- 아이디: ')
+    find_user = None
     for info in user:
-        id = input('- 아이디: ')
-        pw = input('- 비밀번호: ')
-        if (info['아이디'] == id) and (info['비밀번호'] == pw):
-            print('☆ 로그인 되셨습니다 ☆')
-            print('{}님 환영합니다.'.format(info['이름']))
-            input()
-            return True
-        elif (info['아이디'] != id) and (info['비밀번호'] == pw):
-            print('아이디가 틀렸습니다.')
-            input()
-            return False
-        elif (info['아이디'] == id) and (info['비밀번호'] != pw):
-            print('비밀번호가 틀렸습니다.')
-            input()
-            return False    
+        if (info['아이디'] == id):
+            find_user = info
+            break
+    real_pw = find_user['비밀번호']
+    pw = input('- 비밀번호: ')
+
+    if real_pw == pw:
+        pass
+    else:   
+        pass
  
 # 0 - 3_1 [id 찾기] - id 조회 헤드 함수
 def header_id():
