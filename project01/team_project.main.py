@@ -137,7 +137,11 @@ def modify_product():
 
         if select == 1:
             # 딕셔너리 수정: 딕셔너리변수[key] = new_value
-            menu['제품명'] = input('- 수정할 이름({}): '.format(menu['제품명']))
+            new_name = input('- 수정할 이름({}): '.format(menu['제품명']))
+            if new_name == cafelist :
+                print('중복')
+            else:
+                print('수정완')
         elif select == 2:
             menu['가격'] = int(input('- 수정할 가격({}): '.format(menu['가격'])))
         elif select == 3:
