@@ -103,8 +103,8 @@ def user_info():
                                             return
                                         else:
                                             print('비밀번호가 일치하지 않습니다.')
-                                            continue 
-        
+                                            continue   
+
 # 0 - 2 [로그인] 함수 
 def login():
     print('----------로그인----------')
