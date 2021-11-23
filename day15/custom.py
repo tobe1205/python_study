@@ -18,5 +18,4 @@ if __name__== '__main__':
     print(convert_inch_to_cm(1))
     info()
     info()
-    info()
-    info()
+    
