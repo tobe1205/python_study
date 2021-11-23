@@ -1,4 +1,13 @@
+# 세이브파일 관련 모듈
+import sys
+import os
+import pickle
+
+
 # 전역변수 정의부
+dir_name = 'D:/isec_kgw/py_study/inventory/'
+file_name = 'inventory.sav'
+
 inventory = [
     {
         '제품번호': 'a001',
@@ -24,7 +33,31 @@ inventory = [
 ]
 # 함수 정의부
 
-# intro.메뉴를 출력하는 함수
+# 세이브파일 생성 함수
+def save_inventory():
+    if not os.path.isdir(dir_name):
+        os.mkdir(dir_name)
+    
+    try:
+        # b모드는 딕셔너리나 리스트같은 객체를 통째로 넣을 때 사용하는 모드
+        f = open(dir_name+file_name, 'wb')
+        pickle.dump(inventory, f) # 리스트 통채로 세이브파일에 저장
+    except:
+        print('파일 저장 실패!')
+    finally:
+        f.close()
+
+# 파일 로드 기능 함수
+def load_inventory():
+    global inventory
+
+    if not os.path.isdir(dir_name): return
+
+    with open(dir_name+file_name, 'rb') as f:        
+        inventory = pickle.load(f)
+    
+
+# 메뉴를 출력하는 함수
 def show_menu():
     print('\n*** 재고관리 프로그램 ***')
     print('# 1. 제품 정보 등록하기')
@@ -62,7 +95,18 @@ def insert_product():
 
     inventory.append(product)
     print('# 제품 등록 완료!')
+    save_inventory()
     
+# 프로그램 종료처리 함수
+def exit_program():
+    import sys
+    print('\n# 프로그램을 종료합니다. [Y/N]')
+    answer = input('>> ')
+    if answer.lower()[0] == 'y':
+        sys.exit()
+    else:
+        return
+
 
 # 제품정보 출력 머리말 부분
 def header_print():
@@ -71,7 +115,7 @@ def header_print():
     print('{:^8s}{:^8s}{:^8s}{:^8s}{:^10s}'.format('제품번호', '제품명', '가격', '수량', '제품총액'))
     print('=' * 55)
 
-# 2. 전체 제품정보를 출력하는 함수
+# 전체 제품정보를 출력하는 함수
 def print_all_products():
     header_print()
 
@@ -95,7 +139,7 @@ def get_product(code):
             return product
     return {} # 못 찾을 경우 상징적으로 빈 딕셔너리 리턴
 
-# 3. 개별 제품 조회 처리 함수
+# 개별 제품 조회 처리 함수
 def search_product():
     code = input_code('조회')
     product = get_product(code)
@@ -106,7 +150,7 @@ def search_product():
     else:
         print('# 존재하지 않는 제품입니다.')
 
-# 4. 제품정보 수정 처리 함수
+# 제품정보 수정 처리 함수
 def modify_product():
     code = input_code('수정')
     product = get_product(code)
@@ -132,31 +176,27 @@ def modify_product():
         product['총액'] = product['가격'] * product['수량']
     else:
         print('# 존재하지 않는 제품입니다.')
+    
+    save_inventory()
 
-# 5. 제품정보 삭제 처리 함수
+# 제품정보 삭제 처리 함수
 def delete_product():
     code = input_code('삭제')
     product = get_product(code)
 
     if len(product) > 0:
         inventory.remove(product)
-        product('\n# 제품이 정상 삭제되었습니다.')
+        print('\n# 제품이 정상 삭제되었습니다.')
     else:
         print('# 존재하지 않는 제품입니다.')
     
-# 6. 프로그램 종료처리 함수
-def exit_program():
-    import sys
-    print('\n# 프로그램을 종료합니다. [Y/N]')
-    answer = input('>> ')
-    if answer.lower()[0] == 'y':
-        sys.exit()
-    else:
-        return
+    save_inventory()
+
 
 # 메인 실행부
 if __name__ == '__main__':
-    
+
+    load_inventory()
     while True:
         show_menu()
         menu = int(input('>> '))
