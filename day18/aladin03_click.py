@@ -63,13 +63,6 @@ rank = 1
 for boox_box in div_book_box_list:
     div_book = boox_box.select_one('div.ss_book_list')
     # print(div_book)
-    for m in range(1,5):
-        if m == 1:
-            continue
-        else:
-            tab = browser.find_element_by_xpath('//*[@id="newbg_body"]/div[3]/ul/li[m]/a')
-        tab.click()
-        t.sleep(1.5)
 
     li_list = div_book.select('li')
 
