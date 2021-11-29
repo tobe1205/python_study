@@ -20,7 +20,7 @@ d = datetime.today()
 file_name = f'교보문고베스트셀러_{d.year}_{d.month}_{d.day}.xlsx'
 
 # 파일 저장 경로
-file_save_path = f'D:/isec_kgw/py_study/{file_name}'
+file_save_path = f'D:/basic_study/py_study/{file_name}'
 
 # 엑셀라이브러리 객체 생성
 workbook = xlsxwriter.Workbook(file_save_path)
@@ -45,7 +45,7 @@ worksheet.write('E1', '저자',cell_format)
 
 
 # 물리드라이버
-browser = webdriver.Chrome('D:/isec_kgw/py_study/c_driver/chromedriver.exe')
+browser = webdriver.Chrome('D:/basic_study/py_study/c_driver/chromedriver.exe')
 
 # 브라우저 최대창으로 띄우기
 # browser.maximize_window()
@@ -67,14 +67,25 @@ t.sleep(2)
 
 browser.find_element_by_css_selector('#bestSeller > div.section.first.on > div > div > a > img').click()
 
+
 # 현재 페이지 소스코드 불러오기
 html = browser.page_source
 
 soup = BeautifulSoup(html, 'html.parser')
 
 prod_list = soup.select('ul.list_type01 > li')
+
 rank = 1
+'''
+for n in range(2,11):
+        
+    if n > 1:
+        browser.find_element_by_css_selector(f'#main_contents > div:nth-child(6) > div.list_paging > ul > li:nth-child({n}) > a').click()
+
+    t.sleep(2)
+'''    
 for i in range(20):
+
     p = prod_list[i]
 
     img_tag = p.select_one('.cover > a > img')
@@ -82,18 +93,14 @@ for i in range(20):
     prod_name = p.select_one('.title > a > strong').text.strip()
     prod_price = p.select_one('.price > strong').text.strip()
     prod_author = p.select_one('.author').text.strip()
-    author_plus = prod_author.split('저자 더보기')
+    author_plus = prod_author.split('|')
     author = author_plus[0]
-    author_split = author.split('|')
-    author_split = author_split[0]
 
     
-    
-
 
     print(prod_name)
     print(prod_price)
-    print(author_split.strip())
+    print(author.strip())
     print('='*40)
 
     worksheet.write(f'A{rank+1}', rank)
