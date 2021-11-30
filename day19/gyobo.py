@@ -20,7 +20,7 @@ d = datetime.today()
 file_name = f'교보문고베스트셀러_{d.year}_{d.month}_{d.day}.xlsx'
 
 # 파일 저장 경로
-file_save_path = f'D:/basic_study/py_study/{file_name}'
+file_save_path = f'D:/isec_kgw/py_study/{file_name}'
 
 # 엑셀라이브러리 객체 생성
 workbook = xlsxwriter.Workbook(file_save_path)
@@ -45,7 +45,7 @@ worksheet.write('E1', '저자',cell_format)
 
 
 # 물리드라이버
-browser = webdriver.Chrome('D:/basic_study/py_study/c_driver/chromedriver.exe')
+browser = webdriver.Chrome('D:/isec_kgw/py_study/c_driver/chromedriver.exe')
 
 # 브라우저 최대창으로 띄우기
 # browser.maximize_window()
